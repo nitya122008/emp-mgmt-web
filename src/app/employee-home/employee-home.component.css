@@ -1,0 +1,36 @@
+.searchButton {
+    background-color: #007bffc7
+}
+
+.addButton {
+    background-color: lightgreen
+}
+
+.deletButton {
+    background-color: red
+}
+
+.margin-right-16 {
+    margin-right: 16px;
+}
+
+.mat-table__wrapper .mat-table{
+    min-width: auto !important;
+    width: 100% !important;
+}
+
+.mat-row {
+    width : 100%
+}
+
+.padding-top-16{
+    padding-top: 16px;
+}
+
+.button-row {
+    padding-top: 16px;
+}
+
+.employeeGridPaginator{
+    padding-bottom : 30px;
+}

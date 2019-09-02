@@ -1,0 +1,68 @@
+<mat-card [style.backgroundColor]="'lightgrey'">
+    <mat-card-header>
+            <mat-card-title> Employee Management System </mat-card-title>
+        </mat-card-header>
+</mat-card>
+<div class = "container">
+    <mat-expansion-panel expanded>
+            <mat-expansion-panel-header class="right-aligned-header" [style.backgroundColor]="'#F5F5F5'">
+                    <div class="align" [style.color]="'black'">Management Options
+                    </div>
+            </mat-expansion-panel-header>
+            <p></p>
+            <div class="button-row">
+                    <button id="search" mat-button type="button" class="margin-right-16 searchButton"
+                        (click)="searchAll()">
+                    <span>Display All</span>
+                    </button>
+                    <button id="add" mat-button type="button" class="addButton" [routerLink]="['/entry']">
+                        <span>Add New</span>
+                    </button>
+                </div>
+    </mat-expansion-panel>
+    <div class = "flexible padding-top-16" [hidden]="!employees || !employees.length" >
+        <div class = "tableDiv">
+             <mat-table [dataSource]="employees" [hidden]="!employees || !employees.length"> 
+                <ng-container matColumnDef="employeeId">
+                        <mat-header-cell *matHeaderCellDef>Employee #</mat-header-cell>
+                        <mat-cell *matCellDef="let employee">
+                            <a href="/entry/{{employee.employeeId}}">{{employee.employeeId}}</a></mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="firstName">
+                    <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
+                    <mat-cell *matCellDef="let employee">{{employee.firstName}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="lastName">
+                    <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>
+                    <mat-cell *matCellDef="let employee">{{employee.lastName}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="hireDate">
+                    <mat-header-cell *matHeaderCellDef>Hire Date</mat-header-cell>
+                    <mat-cell *matCellDef="let employee">{{employee.hireDate}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="role">
+                    <mat-header-cell  *matHeaderCellDef>Role</mat-header-cell>
+                    <mat-cell  *matCellDef="let employee">{{employee.role}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="quote">
+                        <mat-header-cell  *matHeaderCellDef>Quote</mat-header-cell>
+                        <mat-cell  *matCellDef="let employee">{{employee.quote}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="extra">
+                        <mat-header-cell  *matHeaderCellDef></mat-header-cell>
+                        <mat-cell  *matCellDef="let employee"></mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="action">
+                    <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>   
+                    <mat-cell  *matCellDef="let employee"> 
+                        <button mat-raised-button class="deletButton" (click)="deleteEmployee(employee.employeeId)">Delete</button> 
+                    </mat-cell>
+                </ng-container>
+                
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+             </mat-table>
+        </div>
+   </div>
+</div>
+

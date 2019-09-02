@@ -1,0 +1,76 @@
+    <div class="container">
+       <form [formGroup]="employeeEntryForm" (ngSubmit)="onSubmit(employeeEntryForm.getRawValue())">
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header class="right-aligned-header" [style.backgroundColor]="'#F5F5F5'">
+                    <div class="align" [style.color]="'black'">Employee Entry
+                    </div>
+                </mat-expansion-panel-header>
+                <p></p>
+                <fieldset>
+                    <mat-grid-list cols="2" rowHeight="80px">
+                        <mat-grid-tile>
+                            <mat-form-field>
+                                <mat-label>First Name: </mat-label>
+                                <input class="form-control" type="text" formControlName="firstName" name="firstName" 
+                                id="firstName" matInput required autocomplete="off" >
+                                <mat-error *ngIf="f.firstName.errors?.required">
+                                        Required.
+                                </mat-error>
+                            </mat-form-field>
+                        </mat-grid-tile>
+                        <mat-grid-tile>
+                                <mat-form-field>
+                                    <mat-label>Last Name: </mat-label>
+                                    <input class="form-control" type="text" formControlName="lastName" name="lastName" 
+                                    id="lastName" matInput required autocomplete="off" >
+                                    <mat-error *ngIf="f.lastName.errors?.required">
+                                            Required.
+                                    </mat-error>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                        <mat-grid-tile>
+                            <mat-form-field >
+                                <mat-label>Role: </mat-label>
+                                <mat-select formControlName="role" required>
+                                    <mat-option *ngFor="let role of roles" [value]="role">{{role}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="f.role.errors?.required">
+                                    Required.
+                                </mat-error>
+                            </mat-form-field>
+                        </mat-grid-tile>
+                        <mat-grid-tile>
+                            <mat-form-field>
+                                    <mat-label>Hire Date:</mat-label>
+                                    <input #d type="text" [matDatepicker]="picker" type="text" autocomplete="off"
+                                    [max] = "maxDate"
+                                    formControlName="hireDate" matInput required>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                    <mat-error *ngIf="f.hireDate.errors?.required">
+                                            Required.
+                                    </mat-error>
+                                    <mat-error *ngIf="f.hireDate.errors?.invalidHireDate">
+                                            Hire Date should be in the past.
+                                    </mat-error>
+                            </mat-form-field>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </fieldset>
+             
+                <div class="button-row">
+                    <button id="submit" [disabled]="!employeeEntryForm.valid || !employeeEntryForm.dirty" 
+                        class="margin-right-16 saveButton" 
+                                mat-button type="submit">
+                        <span class="fas fa-save padding-bottom-3"></span>&nbsp;&nbsp;Save
+                    </button>
+                    <button id="cancel" mat-button type="button" 
+                        (click)="cancel()" class="margin-right-16 cancelButton">
+                        <span class="fas fa-refresh padding-bottom-3"></span>&nbsp;&nbsp;Cancel
+                    </button>
+                </div>
+            </mat-expansion-panel>
+
+        </form>
+    </div>
+
